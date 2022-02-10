@@ -7,7 +7,7 @@ concerns and hence improving code maintainability and understandibility.
 
 
 
-##### Knowing the convention
+#### Knowing the convention
 
 The following files have been added for maintaining the colors : 
 1. **`color_defs.xml`**<br>
@@ -53,3 +53,8 @@ The following files have been added for maintaining the colors :
 4. **`colors_migrating.xml`**<br>
 	This file contains color declarations which are supposed to be in color_defs.xml but has not been renamed yet to have actual color name instead of names linked to their use and components. This is a temporary measure to make sure other 4 color files follows the convention decided for them.
 	This file should be deleted after all colors have been shifted to `color_defs.xml`.<br>
+
+*Note: All color names should strictly follow `snake_case` naming convention.*<br>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/76056229/153405110-a1c547b4-e8b8-4539-89dd-efe15dbb1b0d.png" width="700px" alt="visual representation of color hierarchy"></p>
