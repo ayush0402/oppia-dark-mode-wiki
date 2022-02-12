@@ -58,3 +58,21 @@ The following files have been added for maintaining the colors :
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/76056229/153405110-a1c547b4-e8b8-4539-89dd-efe15dbb1b0d.png" width="700px" alt="visual representation of color hierarchy"></p>
+
+## Working with the layouts
+Currently most of the layouts are directly referencing colors from `color_defs.xml`, they don't have separate colors for day and night mode. Our goal here is to make sure that views and layouts are using specified colors for day and night wherever applicable.
+
+You can refer to the design mocks for expected final result : [Dark Mode Mocks](https://xd.adobe.com/view/c05e9343-60f6-4c11-84ac-c756b75b940f-950d/grid/)
+
+#### How to acheive this goal?
+Here is how I would go around working with any particular layout...<br>
+
+- Replace all the generic colors in the layout with something more specific to the component by defining it in the `component_colors.xml`, generally it should be named in this format *`activity_name_component_name_color`*. 
+
+- Go through the mock for the concerned activity and note down which component of the app needs separate colors for day and night modes. The mock has provided hex color codes for all the elements in the UI, if any of the colors is not already present in the `color_defs.xml` then add it to the file with the actual color name.
+
+- Now, the newly defined colors in `component_colors.xml` should reference to something in `color_palette.xml`, define new colors in `color_palette.xml` based on general use case if not already defined. You will need to define same colors twice, in `values\` as well as `values-night\`. Both these declarations can be same as well, if there is no difference in the mocks for day and night mode. 
+
+Naming these colors can be bit tricky so it is suggested to take help from already exisitng colors in these files.
+
+In short, the general idea is to make sure layouts reference colors only from `component_colors.xml`, which is then referencing a version of `color_palette.xml` based on the active theme, making sure all the color declarations are as per the conventions decided for them.
