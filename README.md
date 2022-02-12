@@ -3,7 +3,7 @@ This guide explains the newly adopted convention for using colors in oppia-andro
 to any particular layout while keeping the code organised and strictly following the decided convention.
 
 The approach is to split color declarations in 4 different files instead of keeping the colors at one place, promoting separations of 
-concerns and hence improving code maintainability and understandibility.
+concerns and hence improving code maintainability and understandability.
 
 
 
@@ -55,6 +55,8 @@ The following files have been added for maintaining the colors :
 	This file should be deleted after all colors have been shifted to `color_defs.xml`.<br>
 
 *Note: All color names should strictly follow `snake_case` naming convention.*<br>
+*All colors in `component_colors.xml` and `color_palette.xml` should have `_color` as suffix and just the opposite for `color_defs.xml`*
+
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/76056229/153405110-a1c547b4-e8b8-4539-89dd-efe15dbb1b0d.png" width="700px" alt="visual representation of color hierarchy"></p>
@@ -67,12 +69,16 @@ You can refer to the design mocks for expected final result : [Dark Mode Mocks](
 #### How to acheive this goal?
 Here is how I would go around working with any particular layout...<br>
 
-- Replace all the generic colors in the layout with something more specific to the component by defining it in the `component_colors.xml`, generally it should be named in this format *`activity_name_component_name_color`*. 
+- Replace all the generic colors in the layout with something more specific to the component by defining it in the `component_colors.xml`, generally it should be named in the format *`activity_name_component_name_color`*. 
 
 - Go through the mock for the concerned activity and note down which component of the app needs separate colors for day and night modes. The mock has provided hex color codes for all the elements in the UI, if any of the colors is not already present in the `color_defs.xml` then add it to the file with the actual color name.
 
-- Now, the newly defined colors in `component_colors.xml` should reference to something in `color_palette.xml`, define new colors in `color_palette.xml` based on general use case if not already defined. You will need to define same colors twice, in `values\` as well as `values-night\`. Both these declarations can be same as well, if there is no difference in the mocks for day and night mode. 
+- Now, the newly defined colors in `component_colors.xml` should reference to something in `color_palette.xml`, define new colors in `color_palette.xml` based on general use case if not already defined. You will need to define same colors twice, in `values\color_palette.xml` as well as `values-night\color_palette.xml`. Both these declarations can be same as well, if there is no difference in the mocks for day and night mode. Make sure `color_palette.xml` is using colors from `color_defs.xml` only.
 
 Naming these colors can be bit tricky so it is suggested to take help from already exisitng colors in these files.
 
 In short, the general idea is to make sure layouts reference colors only from `component_colors.xml`, which is then referencing a version of `color_palette.xml` based on the active theme, making sure all the color declarations are as per the conventions decided for them.
+
+### Running the app with dark mode
+It is suggested to run the app on an API 30 Google Pixel emulator using the system wide dark mode option from settings.<br>
+Some other skins of android might force their own version of dark mode to screens not having dark mode support yet.

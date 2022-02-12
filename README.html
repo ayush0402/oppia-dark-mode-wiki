@@ -1067,7 +1067,7 @@ body .markdown-body
 <p>This guide explains the newly adopted convention for using colors in oppia-android and adding support for dark mode 
 to any particular layout while keeping the code organised and strictly following the decided convention.</p>
 <p>The approach is to split color declarations in 4 different files instead of keeping the colors at one place, promoting separations of 
-concerns and hence improving code maintainability and understandibility.</p>
+concerns and hence improving code maintainability and understandability.</p>
 <h4 id="knowing-the-convention">Knowing the convention<a class="headerlink" href="#knowing-the-convention" title="Permanent link"></a></h4>
 <p>The following files have been added for maintaining the colors : 
 1. <strong><code>color_defs.xml</code></strong><br>
@@ -1110,6 +1110,29 @@ concerns and hence improving code maintainability and understandibility.</p>
     This file contains color declarations which are supposed to be in color_defs.xml but has not been renamed yet to have actual color name instead of names linked to their use and components. This is a temporary measure to make sure other 4 color files follows the convention decided for them.
     This file should be deleted after all colors have been shifted to <code>color_defs.xml</code>.<br></li>
 </ol>
-<p><em>Note: All color names should strictly follow <code>snake_case</code> naming convention.</em><br></p>
+<p><em>Note: All color names should strictly follow <code>snake_case</code> naming convention.</em><br>
+<em>All colors in <code>component_colors.xml</code> and <code>color_palette.xml</code> should have <code>_color</code> as suffix and just the opposite for <code>color_defs.xml</code></em></p>
 <p align="center">
-<img src="https://user-images.githubusercontent.com/76056229/153405110-a1c547b4-e8b8-4539-89dd-efe15dbb1b0d.png" width="700px" alt="visual representation of color hierarchy"></p></article></body></html>
+<img src="https://user-images.githubusercontent.com/76056229/153405110-a1c547b4-e8b8-4539-89dd-efe15dbb1b0d.png" width="700px" alt="visual representation of color hierarchy"></p>
+
+<h2 id="working-with-the-layouts">Working with the layouts<a class="headerlink" href="#working-with-the-layouts" title="Permanent link"></a></h2>
+<p>Currently most of the layouts are directly referencing colors from <code>color_defs.xml</code>, they don&rsquo;t have separate colors for day and night mode. Our goal here is to make sure that views and layouts are using specified colors for day and night wherever applicable.</p>
+<p>You can refer to the design mocks for expected final result : <a href="https://xd.adobe.com/view/c05e9343-60f6-4c11-84ac-c756b75b940f-950d/grid/">Dark Mode Mocks</a></p>
+<h4 id="how-to-acheive-this-goal">How to acheive this goal?<a class="headerlink" href="#how-to-acheive-this-goal" title="Permanent link"></a></h4>
+<p>Here is how I would go around working with any particular layout&hellip;<br></p>
+<ul>
+<li>
+<p>Replace all the generic colors in the layout with something more specific to the component by defining it in the <code>component_colors.xml</code>, generally it should be named in the format <em><code>activity_name_component_name_color</code></em>. </p>
+</li>
+<li>
+<p>Go through the mock for the concerned activity and note down which component of the app needs separate colors for day and night modes. The mock has provided hex color codes for all the elements in the UI, if any of the colors is not already present in the <code>color_defs.xml</code> then add it to the file with the actual color name.</p>
+</li>
+<li>
+<p>Now, the newly defined colors in <code>component_colors.xml</code> should reference to something in <code>color_palette.xml</code>, define new colors in <code>color_palette.xml</code> based on general use case if not already defined. You will need to define same colors twice, in <code>values\color_palette.xml</code> as well as <code>values-night\color_palette.xml</code>. Both these declarations can be same as well, if there is no difference in the mocks for day and night mode. Make sure <code>color_palette.xml</code> is using colors from <code>color_defs.xml</code> only.</p>
+</li>
+</ul>
+<p>Naming these colors can be bit tricky so it is suggested to take help from already exisitng colors in these files.</p>
+<p>In short, the general idea is to make sure layouts reference colors only from <code>component_colors.xml</code>, which is then referencing a version of <code>color_palette.xml</code> based on the active theme, making sure all the color declarations are as per the conventions decided for them.</p>
+<h3 id="running-the-app-with-dark-mode">Running the app with dark mode<a class="headerlink" href="#running-the-app-with-dark-mode" title="Permanent link"></a></h3>
+<p>It is suggested to run the app on an API 30 Google Pixel emulator using the system wide dark mode option from settings.<br>
+Some other skins of android might force their own version of dark mode to screens not having dark mode support yet.</p></article></body></html>
