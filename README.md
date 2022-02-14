@@ -79,6 +79,8 @@ Naming these colors can be bit tricky so it is suggested to take help from alrea
 
 In short, the general idea is to make sure layouts reference colors only from `component_colors.xml`, which is then referencing a version of `color_palette.xml` based on the active theme, making sure all the color declarations are as per the conventions decided for them.
 
+*Tip: Use layout Inspector to know more about targeted views.*
+
 ### Running the app with dark mode
 It is suggested to run the app on an API 30 Google Pixel emulator using the system wide dark mode option from settings.<br>
 Some other skins of android might force their own version of dark mode to screens not having dark mode support yet.
