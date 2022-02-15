@@ -13,6 +13,13 @@ The following files have been added for maintaining the colors :
 1. **`color_defs.xml`**<br>
 	 This file should strictly contain actual color names (irrespective of their intended use) with their hex color code declaration.<br>
 	 example:<br>
+	 > Don't
+	 ```xml
+	 <color name="background_green">#90EE90</color>
+	 <color name="secondary_green">#90EE90</color>
+	 <color name="text_view_error_red">#FF0000</color>
+	 ```
+	 > Do
 	 ```xml
 	 <color name="lime_green">#90EE90</color>
 	 <color name="blue">#0000FF</color>
@@ -20,7 +27,7 @@ The following files have been added for maintaining the colors :
 	 Declarations from this file should be only used in `color_palette.xml`.
 
 2. **`color_palette.xml`**<br>
-	There are two versions for this file (day/night variations). The purpose of this file is to split the colors for them to be later referenced by `component_colors.xml`. The color declarations in this should have a generic name and should not contain any name tied to the intended component to be used on.
+	There are two versions for this file (day/night variations). The purpose of this file is to split the colors for them to be later referenced by `component_colors.xml`. The color declarations in this should have a generic name and should not contain any name tied to the intended component like toolbar, edittext, textview, etec. to be used on. Also, colors should **not** contain "feature" based name (like *add_profile_background_color*).
 	The declarations in this file should only reference `color_defs.xml`.
 	>Don't:
 	```xml
@@ -39,14 +46,14 @@ The following files have been added for maintaining the colors :
 	```xml
  	<color name="shared_text_input_edit_text_cursor_color">@color/primary_text_color</color>
   	<color name="shared_activity_toolbar_color">@color/toolbar_color</color>
-  	<!--Styles.xml-->
+  	<!-- styles.xml -->
   	<color name="shared_text_input_layout_text_color">@color/primary_text_color</color>
   	<color name="shared_input_interaction_edit_text_text_color">@color/primary_text_color</color>
   	<color name="shared_text_input_layout_background_color">@color/text_input_background_color</color>
-  	<!--Admin Auth Activity-->
+  	<!-- Admin Auth Activity -->
   	<color name="admin_auth_secondary_text_color">@color/description_text_color</color>
   	<color name="admin_auth_layout_background_color">@color/background_color</color>
-  	<!--Add Profile Activity-->
+  	<!-- Add Profile Activity -->
   	<color name="add_profile_activity_label_text_color">@color/primary_text_color</color>
   	<color name="add_profile_activity_switch_text_color">@color/dark_text_color</color>
 	```
@@ -69,7 +76,7 @@ You can refer to the design mocks for expected final result : [Dark Mode Mocks](
 #### How to acheive this goal?
 Here is how I would go around working with any particular layout...<br>
 
-- Replace all the generic colors in the layout with something more specific to the component by defining it in the `component_colors.xml`, generally it should be named in the format *`activity_name_component_name_color`*. 
+- Replace all the generic colors in the layout with something more specific to the component by defining it in the `component_colors.xml`, generally it should be named in the format *`<activity_name>_<component_name>_color`*. 
 
 - Go through the mock for the concerned activity and note down which component of the app needs separate colors for day and night modes. The mock has provided hex color codes for all the elements in the UI, if any of the colors is not already present in the `color_defs.xml` then add it to the file with the actual color name.
 

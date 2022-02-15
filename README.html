@@ -1073,13 +1073,19 @@ concerns and hence improving code maintainability and understandability.</p>
 1. <strong><code>color_defs.xml</code></strong><br>
      This file should strictly contain actual color names (irrespective of their intended use) with their hex color code declaration.<br>
      example:<br>
+     &gt; Don&rsquo;t
+     <div class="highlight"><pre><span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;background_green&quot;</span><span class="nt">&gt;</span>#90EE90<span class="nt">&lt;/color&gt;</span>
+<span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;secondary_green&quot;</span><span class="nt">&gt;</span>#90EE90<span class="nt">&lt;/color&gt;</span>
+<span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;text_view_error_red&quot;</span><span class="nt">&gt;</span>#FF0000<span class="nt">&lt;/color&gt;</span>
+</pre></div>
+     &gt; Do
      <div class="highlight"><pre><span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;lime_green&quot;</span><span class="nt">&gt;</span>#90EE90<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;blue&quot;</span><span class="nt">&gt;</span>#0000FF<span class="nt">&lt;/color&gt;</span>
 </pre></div>
      Declarations from this file should be only used in <code>color_palette.xml</code>.</p>
 <ol start="2">
 <li><strong><code>color_palette.xml</code></strong><br>
-    There are two versions for this file (day/night variations). The purpose of this file is to split the colors for them to be later referenced by <code>component_colors.xml</code>. The color declarations in this should have a generic name and should not contain any name tied to the intended component to be used on.
+    There are two versions for this file (day/night variations). The purpose of this file is to split the colors for them to be later referenced by <code>component_colors.xml</code>. The color declarations in this should have a generic name and should not contain any name tied to the intended component like toolbar, edittext, textview, etec. to be used on. Also, colors should <strong>not</strong> contain &ldquo;feature&rdquo; based name (like <em>add_profile_background_color</em>).
     The declarations in this file should only reference <code>color_defs.xml</code>.
     &gt;Don&rsquo;t:
     <div class="highlight"><pre><span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;add_profile_background_color&quot;</span><span class="nt">&gt;</span>@color/light_black<span class="nt">&lt;/color&gt;</span>
@@ -1095,14 +1101,14 @@ concerns and hence improving code maintainability and understandability.</p>
     examples:<br>
     <div class="highlight"><pre><span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;shared_text_input_edit_text_cursor_color&quot;</span><span class="nt">&gt;</span>@color/primary_text_color<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;shared_activity_toolbar_color&quot;</span><span class="nt">&gt;</span>@color/toolbar_color<span class="nt">&lt;/color&gt;</span>
-<span class="c">&lt;!--Styles.xml--&gt;</span>
+<span class="c">&lt;!-- styles.xml --&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;shared_text_input_layout_text_color&quot;</span><span class="nt">&gt;</span>@color/primary_text_color<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;shared_input_interaction_edit_text_text_color&quot;</span><span class="nt">&gt;</span>@color/primary_text_color<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;shared_text_input_layout_background_color&quot;</span><span class="nt">&gt;</span>@color/text_input_background_color<span class="nt">&lt;/color&gt;</span>
-<span class="c">&lt;!--Admin Auth Activity--&gt;</span>
+<span class="c">&lt;!-- Admin Auth Activity --&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;admin_auth_secondary_text_color&quot;</span><span class="nt">&gt;</span>@color/description_text_color<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;admin_auth_layout_background_color&quot;</span><span class="nt">&gt;</span>@color/background_color<span class="nt">&lt;/color&gt;</span>
-<span class="c">&lt;!--Add Profile Activity--&gt;</span>
+<span class="c">&lt;!-- Add Profile Activity --&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;add_profile_activity_label_text_color&quot;</span><span class="nt">&gt;</span>@color/primary_text_color<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">&quot;add_profile_activity_switch_text_color&quot;</span><span class="nt">&gt;</span>@color/dark_text_color<span class="nt">&lt;/color&gt;</span>
 </pre></div></li>
@@ -1122,7 +1128,7 @@ concerns and hence improving code maintainability and understandability.</p>
 <p>Here is how I would go around working with any particular layout&hellip;<br></p>
 <ul>
 <li>
-<p>Replace all the generic colors in the layout with something more specific to the component by defining it in the <code>component_colors.xml</code>, generally it should be named in the format <em><code>activity_name_component_name_color</code></em>. </p>
+<p>Replace all the generic colors in the layout with something more specific to the component by defining it in the <code>component_colors.xml</code>, generally it should be named in the format <em><code>&lt;activity_name&gt;_&lt;component_name&gt;_color</code></em>. </p>
 </li>
 <li>
 <p>Go through the mock for the concerned activity and note down which component of the app needs separate colors for day and night modes. The mock has provided hex color codes for all the elements in the UI, if any of the colors is not already present in the <code>color_defs.xml</code> then add it to the file with the actual color name.</p>
@@ -1133,6 +1139,7 @@ concerns and hence improving code maintainability and understandability.</p>
 </ul>
 <p>Naming these colors can be bit tricky so it is suggested to take help from already exisitng colors in these files.</p>
 <p>In short, the general idea is to make sure layouts reference colors only from <code>component_colors.xml</code>, which is then referencing a version of <code>color_palette.xml</code> based on the active theme, making sure all the color declarations are as per the conventions decided for them.</p>
+<p><em>Tip: Use layout Inspector to know more about targeted views.</em></p>
 <h3 id="running-the-app-with-dark-mode">Running the app with dark mode<a class="headerlink" href="#running-the-app-with-dark-mode" title="Permanent link"></a></h3>
 <p>It is suggested to run the app on an API 30 Google Pixel emulator using the system wide dark mode option from settings.<br>
 Some other skins of android might force their own version of dark mode to screens not having dark mode support yet.</p></article></body></html>
