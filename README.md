@@ -64,7 +64,7 @@ The following files have been added for maintaining the colors :
 _Note:_ 
 - *All color names should strictly follow `snake_case` naming convention.*<br>
 - *All colors in `component_colors.xml` and `color_palette.xml` should have `_color` as suffix and just the opposite for `color_defs.xml`*<br>
-- *All color declaration must have their parent file name as prefix of their name, i.e. "`<file_name>_<color_name>`" (Look at the color examples for better understanding.)*
+- *All color declaration must have their parent file name as prefix of their name, i.e. "`<file_name>_<color_name>`" (Look at the color name examples for better understanding.)*
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/76056229/153405110-a1c547b4-e8b8-4539-89dd-efe15dbb1b0d.png" width="700px" alt="visual representation of color hierarchy"></p>
